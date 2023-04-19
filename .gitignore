@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/WaveMergeSort/.vs/WaveMergeSort/v16
+/WaveMergeSort/WaveMergeSort/obj
+/WaveMergeSort/WaveMergeSort.Tests/obj/Debug
+/WaveMergeSort/WaveMergeSort.Tests/bin/Debug
+/WaveMergeSort/WaveMergeSort/bin/Debug/netstandard2.0
