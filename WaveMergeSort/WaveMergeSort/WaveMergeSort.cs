@@ -2,10 +2,13 @@
 
 namespace WaveMergeSort
 {
+	/// <summary>
+	/// The stable sorting method.
+	/// </summary>
 	public static class WaveMergeSort
 	{
 		/// <summary>
-		/// Sorts the elements in a range of elements in the specified array.
+		/// Sorts the elements in the specified array.
 		/// </summary>
 		/// <param name="arr">The one-dimensional, zero-based array to sort.</param>
 		public static void Sort(int[] arr)
@@ -105,7 +108,6 @@ namespace WaveMergeSort
 			int j = right;
 			while (i < j)
 			{
-				//AddSwapOperation();
 				var tmp = arr[i];
 				arr[i] = arr[j];
 				arr[j] = tmp;
@@ -125,14 +127,10 @@ namespace WaveMergeSort
 			int i = l2;
 			while (i <= r)
 			{
-				//AddIteration();
 				int temp = arr[i];
 				int j = i;
 				while (j > l && arr[j - 1] > temp)
 				{
-					//if (j < i)
-					//	AddIteration();
-					//AddSwapOperation();
 					arr[j] = arr[j - 1];
 					j--;
 				}
@@ -163,11 +161,8 @@ namespace WaveMergeSort
 
 			// passing to an effective element in the left wave
 			int tmp = arr[j];
-			//AddIteration();
 			while (l2 <= m && arr[l2] <= tmp)
 			{
-				//if (l2 > l)
-				//	AddIteration();
 				l2++;
 			}
 			if (l2 <= m)
@@ -188,21 +183,17 @@ namespace WaveMergeSort
 				{
 					temp[t++] = arr[j++];
 				}
-
-				//AddIteration();
 			}
 			// moving not affected elements from the left wave to the right
 			int k = m + 1;
 			while (k > i)
 			{
 				arr[--j] = arr[--k];
-				//AddSwapOperation();
 			}
 			// copying the sorted elements from the temp array to the main one
 			for (j = 0; j < t; j++)
 			{
 				arr[l2++] = temp[j];
-				//AddSwapOperation();
 			}
 		}
 	}
