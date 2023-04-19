@@ -1,5 +1,6 @@
 # Wave Merge Sort
 A new stable sorting algorithm that use merging prepared waves (sorted sub-arrays).
+This is a FREE algorithm, you can use it in your products without any license.
 
 # Algorithm:
 
@@ -51,3 +52,7 @@ It's time to compare the results of the Merge Sort and Wave Merge Sort algorithm
 Below is the average running time for different arrays by size and distribution of elements. The average time is taken from 20 runs of each species.
 
 ![image](https://user-images.githubusercontent.com/125959176/233118043-13f7451b-a90f-425d-a3cd-b1db797dde26.png)
+
+# Donation
+
+If you like it and want to support my further improvements, please donate using links in "Sponsor this project" section on this page.
