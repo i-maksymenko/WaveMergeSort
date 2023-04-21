@@ -135,7 +135,7 @@ namespace WaveMergeSort
 					j--;
 				}
 				if (j == i)
-					break;
+					return;
 
 				arr[j] = temp;
 				i++;
@@ -150,27 +150,26 @@ namespace WaveMergeSort
 		/// <param name="r">The ending index of the second range to merge.</param>
 		private static void merge(int[] arr, int l, int m, int r)
 		{
-			// inti the temp array for merging
-			int[] temp = new int[r - l + 1];
-			// the temp array counter
-			int t = 0;
 			// the effective start index of the left wave
 			int l2 = l;
 			// the start index of the right wave
 			int j = m + 1;
-
 			// passing to an effective element in the left wave
 			int tmp = arr[j];
 			while (l2 <= m && arr[l2] <= tmp)
 			{
 				l2++;
 			}
-			if (l2 <= m)
-			{
-				// adding the first element of the right wave to the temp array
-				temp[t++] = tmp;
-				j++;
-			}
+			// exit if there is no effective elements 
+			if (l2 > m)
+				return;
+			// init the temp array for merging
+			int[] temp = new int[r - l + 1];
+			// the temp array counter
+			int t = 0;
+			// adding the first element of the right wave to the temp array
+			temp[t++] = tmp;
+			j++;
 			// sorting waves into the temp array
 			int i = l2;
 			while (i <= m && j <= r)
