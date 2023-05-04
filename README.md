@@ -54,6 +54,6 @@ Below is the average running time for different arrays by size and distribution 
 
 ![image](https://user-images.githubusercontent.com/125959176/233118043-13f7451b-a90f-425d-a3cd-b1db797dde26.png)
 
-# Donation
+# Sponsorship
 
-If you like it and you want to support me, please donate using links in "Sponsor this project" section on this page.
+If you like it and want to support me, please use links in the "Sponsor this project" section on this page.
