@@ -38,7 +38,6 @@ O(4n / 3 + 2) – The algorithm uses auxiliary arrays to merge and save wave ind
 # Advantages
 • Quick sorting of already sorted (whether in ascending or descending order) arrays or if the array has sufficiently significant such ranges
 
-• No recursion
 
 • The minimum number of comparison and swap operations compared to the classic Merge Sort
 
