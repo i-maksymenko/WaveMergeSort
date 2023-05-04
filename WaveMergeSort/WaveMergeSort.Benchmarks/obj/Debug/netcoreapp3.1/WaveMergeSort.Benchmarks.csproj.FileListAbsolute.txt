@@ -1,0 +1,17 @@
+C:\YMaksimenko\Work\_Projects\WaveMergeSort\WaveMergeSort\WaveMergeSort.Benchmarks\bin\Debug\netcoreapp3.1\WaveMergeSort.Benchmarks.exe
+C:\YMaksimenko\Work\_Projects\WaveMergeSort\WaveMergeSort\WaveMergeSort.Benchmarks\bin\Debug\netcoreapp3.1\WaveMergeSort.Benchmarks.deps.json
+C:\YMaksimenko\Work\_Projects\WaveMergeSort\WaveMergeSort\WaveMergeSort.Benchmarks\bin\Debug\netcoreapp3.1\WaveMergeSort.Benchmarks.runtimeconfig.json
+C:\YMaksimenko\Work\_Projects\WaveMergeSort\WaveMergeSort\WaveMergeSort.Benchmarks\bin\Debug\netcoreapp3.1\WaveMergeSort.Benchmarks.runtimeconfig.dev.json
+C:\YMaksimenko\Work\_Projects\WaveMergeSort\WaveMergeSort\WaveMergeSort.Benchmarks\bin\Debug\netcoreapp3.1\WaveMergeSort.Benchmarks.dll
+C:\YMaksimenko\Work\_Projects\WaveMergeSort\WaveMergeSort\WaveMergeSort.Benchmarks\bin\Debug\netcoreapp3.1\WaveMergeSort.Benchmarks.pdb
+C:\YMaksimenko\Work\_Projects\WaveMergeSort\WaveMergeSort\WaveMergeSort.Benchmarks\bin\Debug\netcoreapp3.1\WaveMergeSort.dll
+C:\YMaksimenko\Work\_Projects\WaveMergeSort\WaveMergeSort\WaveMergeSort.Benchmarks\bin\Debug\netcoreapp3.1\WaveMergeSort.pdb
+C:\YMaksimenko\Work\_Projects\WaveMergeSort\WaveMergeSort\WaveMergeSort.Benchmarks\obj\Debug\netcoreapp3.1\WaveMergeSort.Benchmarks.csproj.AssemblyReference.cache
+C:\YMaksimenko\Work\_Projects\WaveMergeSort\WaveMergeSort\WaveMergeSort.Benchmarks\obj\Debug\netcoreapp3.1\WaveMergeSort.Benchmarks.GeneratedMSBuildEditorConfig.editorconfig
+C:\YMaksimenko\Work\_Projects\WaveMergeSort\WaveMergeSort\WaveMergeSort.Benchmarks\obj\Debug\netcoreapp3.1\WaveMergeSort.Benchmarks.AssemblyInfoInputs.cache
+C:\YMaksimenko\Work\_Projects\WaveMergeSort\WaveMergeSort\WaveMergeSort.Benchmarks\obj\Debug\netcoreapp3.1\WaveMergeSort.Benchmarks.AssemblyInfo.cs
+C:\YMaksimenko\Work\_Projects\WaveMergeSort\WaveMergeSort\WaveMergeSort.Benchmarks\obj\Debug\netcoreapp3.1\WaveMergeSort.Benchmarks.csproj.CoreCompileInputs.cache
+C:\YMaksimenko\Work\_Projects\WaveMergeSort\WaveMergeSort\WaveMergeSort.Benchmarks\obj\Debug\netcoreapp3.1\WaveMergeSort.Benchmarks.csproj.CopyComplete
+C:\YMaksimenko\Work\_Projects\WaveMergeSort\WaveMergeSort\WaveMergeSort.Benchmarks\obj\Debug\netcoreapp3.1\WaveMergeSort.Benchmarks.dll
+C:\YMaksimenko\Work\_Projects\WaveMergeSort\WaveMergeSort\WaveMergeSort.Benchmarks\obj\Debug\netcoreapp3.1\WaveMergeSort.Benchmarks.pdb
+C:\YMaksimenko\Work\_Projects\WaveMergeSort\WaveMergeSort\WaveMergeSort.Benchmarks\obj\Debug\netcoreapp3.1\WaveMergeSort.Benchmarks.genruntimeconfig.cache

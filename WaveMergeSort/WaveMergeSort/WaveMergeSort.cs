@@ -1,99 +1,101 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using WaveMergeSort.Helpers;
 
 namespace WaveMergeSort
 {
 	/// <summary>
 	/// The stable sorting method.
 	/// </summary>
-	public static class WaveMergeSort
+	internal class WaveMergeSort<T>
 	{
-		/// <summary>
-		/// Sorts the elements in the specified array.
-		/// </summary>
-		/// <param name="arr">The one-dimensional, zero-based array to sort.</param>
-		public static void Sort(int[] arr)
-		{
-			Sort(arr, 0, arr.Length - 1);
-		}
+		CompareHelper<T> _compareHelper;
 
 		/// <summary>
-		/// Sorts the elements in a range of elements in the specified array.
+		/// Sorts the elements in a range of elements in the specified array
+		/// using the specified <see cref="IComparer{T}" /> generic interface.
 		/// </summary>
 		/// <param name="arr">The one-dimensional, zero-based array to sort.</param>
 		/// <param name="left">The starting index of the range to sort.</param>
 		/// <param name="right">The ending index of the range to sort.</param>
-		public static void Sort(int[] arr, int left, int right)
+		/// <param name="comparer">The <see cref="IComparer{T}" /> generic interface implementation to
+		/// use when comparing elements.</param>
+		/// <typeparam name="T">The type of the elements of the array.</typeparam>
+		public void Sort(T[] arr, int left, int right, IComparer<T> comparer)
+		{
+			if (comparer == null && typeof(T).GetInterfaces().Contains(typeof(IComparable<T>)))
+				comparer = Comparer<T>.Default;
+
+			if (comparer == null)
+				throw new InvalidOperationException($"Comparer is null, and one or more elements in array do not implement the System.IComparable<{typeof(T).Name}> generic interface");
+
+			_compareHelper = new CompareHelper<T>(comparer);
+
+			SortWaves(arr, left, right);
+		}
+		private void SortWaves(T[] arr, int left, int right)
 		{
 			int n = right - left + 1;
 			if (n < 2)
 				return;
+
 			// init the array to store ending indices of waves
-			int[] waves = new int[n / 3 + 2];
+			int[] waves = new int[n / 2 + 1];
 			// init waves counter
 			int w = 0;
 			// init a wave start index
-			int l = left;
-			// init a previous wave start index
-			int p = left;
+			int l;
+			// init a wave end index
+			int r = left;
 			// prepare waves for merging
-			int i = left + 1;
-			while (i <= right)
+			while (r < right)
 			{
-				if (arr[i - 1] > arr[i])
+				if (_compareHelper.GreaterThan(arr[r], arr[++r]))
 				{
+					l = r - 1;
 					// go down the wave
-					while (i < right && arr[i] > arr[i + 1])
+					while (r < right && _compareHelper.GreaterThan(arr[r], arr[r + 1]))
 					{
-						i++;
+						r++;
 					}
 					// reverse the current descent wave
-					reverse(arr, l, i);
+					reverse(arr, l, r);
 				}
 				// climb up the wave
-				while (i < right && arr[i] <= arr[i + 1])
+				while (r < right && _compareHelper.LessThanOrEqual(arr[r], arr[r + 1]))
 				{
-					i++;
+					r++;
 				}
-				// Try to merge last two small waves in place to reduce the number of waves.
-				// The "6" is optimal number of elements to merge in place.
-				// You can remove this block but you have to init "waves" array of length N/2 + 1.
-				if (w > 0 && i - p < 6)
-				{
-					mergeInPlace(arr, p, l, i);
-					w--;
-				}
-				else
-				{
-					p = l;
-				}
-
-				if (i < right)
-				{
-					// add a new wave's index
-					waves[w++] = i;
-					// set the next wave start
-					l = ++i;
-				}
-				i++;
+				// save the wave's end index
+				waves[w++] = r++;
 			}
-			// merge the prepared waves
-			for (int step = 1; step <= w; step = 2 * step)
+			if (w > 0 && waves[w - 1] == right)
 			{
-				// the starting index of the first wave
-				l = left;
-				for (i = step - 1; i < w; i += 2 * step)
-				{
-					// the ending index of the first wave
-					int m = waves[i];
-					// the index of the second wave
-					p = i + step;
-					// calculate the ending index of the second wave
-					p = p < w ? waves[p] : right;
-					// merge two waves
-					merge(arr, l, m, p);
-					// set the start of the next wave
-					l = p + 1;
-				}
+				w--;
+			}
+			mergeWaves(arr, left, right, waves, 0, w);
+		}
+		/// <summary>
+		/// Merges sorted sub-arrays of main array recursively.
+		/// </summary>
+		/// <param name="arr">The one-dimensional, zero-based array to sort.</param>
+		/// <param name="left">The starting index of the range to sort.</param>
+		/// <param name="right">The ending index of the range to sort.</param>
+		/// <param name="waves">The one-dimensional, zero-based array of waves.</param>
+		/// <param name="waveStart">The left wave to merge.</param>
+		/// <param name="waveEnd">The right wave to merge.</param>
+		private void mergeWaves(T[] arr, int left, int right, int[] waves, int waveStart, int waveEnd)
+		{
+			if (waveStart < waveEnd)
+			{
+				int waveMiddle = waveStart + (waveEnd - waveStart) / 2;
+				int middle = waves[waveMiddle];
+
+				mergeWaves(arr, left, middle, waves, waveStart, waveMiddle);
+				mergeWaves(arr, middle + 1, right, waves, waveMiddle + 1, waveEnd);
+
+				merge(arr, left, middle, right);
 			}
 		}
 		/// <summary>
@@ -102,44 +104,19 @@ namespace WaveMergeSort
 		/// <param name="arr">The one-dimensional, zero-based array to reverse.</param>
 		/// <param name="left">The starting index of the range to reverse.</param>
 		/// <param name="right">The ending index of the range to reverse.</param>
-		private static void reverse(int[] arr, int left, int right)
+		private void reverse(T[] arr, int left, int right)
 		{
 			int i = left;
 			int j = right;
-			while (i < j)
+			do
 			{
 				var tmp = arr[i];
 				arr[i] = arr[j];
 				arr[j] = tmp;
 				i++;
 				j--;
-			}
-		}
-		/// <summary>
-		/// Merges left and right sub-arrays in the specified array using the insertion sort.
-		/// </summary>
-		/// <param name="arr">The specified array to sort.</param>
-		/// <param name="l">The starting index of the first range to merge.</param>
-		/// <param name="l2">The starting index of the second range to merge.</param>
-		/// <param name="r">The ending index of the second range to merge.</param>
-		private static void mergeInPlace(int[] arr, int l, int l2, int r)
-		{
-			int i = l2;
-			while (i <= r)
-			{
-				int temp = arr[i];
-				int j = i;
-				while (j > l && arr[j - 1] > temp)
-				{
-					arr[j] = arr[j - 1];
-					j--;
-				}
-				if (j == i)
-					return;
-
-				arr[j] = temp;
-				i++;
-			}
+			} 
+			while (i < j);
 		}
 		/// <summary>
 		/// Merges left and right sub-arrays in the specified array.
@@ -148,52 +125,51 @@ namespace WaveMergeSort
 		/// <param name="l">The starting index of the first range to merge.</param>
 		/// <param name="m">The ending index of the first range to merge.</param>
 		/// <param name="r">The ending index of the second range to merge.</param>
-		private static void merge(int[] arr, int l, int m, int r)
+		private void merge(T[] arr, int l, int m, int r)
 		{
-			// the effective start index of the left wave
-			int l2 = l;
-			// the start index of the right wave
-			int j = m + 1;
-			// passing to an effective element in the left wave
-			int tmp = arr[j];
-			while (l2 <= m && arr[l2] <= tmp)
+			int len1 = m - l + 1;
+			int len2 = r - m;
+			var left = new T[len1];
+			var right = new T[len2];
+			int i;
+			int k = l;
+
+			for (i = 0; i < len1; i++)
 			{
-				l2++;
+				left[i] = arr[k++];
 			}
-			// exit if there is no effective elements 
-			if (l2 > m)
-				return;
-			// init the temp array for merging
-			int[] temp = new int[r - l + 1];
-			// the temp array counter
-			int t = 0;
-			// adding the first element of the right wave to the temp array
-			temp[t++] = tmp;
-			j++;
-			// sorting waves into the temp array
-			int i = l2;
-			while (i <= m && j <= r)
+
+			for (i = 0; i < len2; i++)
 			{
-				if (arr[i] <= arr[j])
+				right[i] = arr[k++];
+			}
+
+			i = 0;
+			int j = 0;
+			k = l;
+
+			while (i < len1 && j < len2)
+			{
+				if (_compareHelper.GreaterThan(left[i], right[j]))
 				{
-					temp[t++] = arr[i++];
+					arr[k++] = right[j++];
 				}
 				else
 				{
-					temp[t++] = arr[j++];
+					arr[k++] = left[i++];
 				}
 			}
-			// moving not affected elements from the left wave to the right
-			int k = m + 1;
-			while (k > i)
+
+			while (i < len1)
 			{
-				arr[--j] = arr[--k];
+				arr[k++] = left[i++];
 			}
-			// copying the sorted elements from the temp array to the main one
-			for (j = 0; j < t; j++)
+
+			while (j < len2)
 			{
-				arr[l2++] = temp[j];
+				arr[k++] = right[j++];
 			}
 		}
+
 	}
 }

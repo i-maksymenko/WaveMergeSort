@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "WaveMergeSort.Benchmarks/1.0.0": {
+        "dependencies": {
+          "WaveMergeSort": "1.0.0"
+        },
+        "runtime": {
+          "WaveMergeSort.Benchmarks.dll": {}
+        }
+      },
+      "WaveMergeSort/1.0.0": {
+        "runtime": {
+          "WaveMergeSort.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "WaveMergeSort.Benchmarks/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "WaveMergeSort/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

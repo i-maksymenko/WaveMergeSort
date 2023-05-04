@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WaveMergeSort;
+using WaveMergeSort.Extensions;
 
 namespace WaveMergeSort.Tests
 {
@@ -12,7 +12,7 @@ namespace WaveMergeSort.Tests
 			int[] given = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 			int[] expected = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
-			WaveMergeSort.Sort(given);
+			given.WaveMergeSort();
 			Assert.IsTrue(AreArraysEqual(given, expected));
 		}
 		[TestMethod]
@@ -21,7 +21,7 @@ namespace WaveMergeSort.Tests
 			int[] given = new int[] { 9, 8, 7, 6, 5, 4, 3, 2, 1 };
 			int[] expected = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
-			WaveMergeSort.Sort(given);
+			given.WaveMergeSort();
 			Assert.IsTrue(AreArraysEqual(given, expected));
 		}
 		[TestMethod]
@@ -30,7 +30,7 @@ namespace WaveMergeSort.Tests
 			int[] given = new int[] { 4, 3, 1, 9, 8, 2, 5, 7, 6 };
 			int[] expected = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
-			WaveMergeSort.Sort(given);
+			given.WaveMergeSort();
 			Assert.IsTrue(AreArraysEqual(given, expected));
 		}
 
