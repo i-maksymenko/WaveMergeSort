@@ -6,7 +6,7 @@ This is a FREE algorithm, you can use it in your products without any licenses.
 # Algorithm
 
 1. Walking through the array, we will encounter either increasing values (or identical values) or decreasing values. I called these ranges waves because a wave also has an up side and a down side.
-2. We reverse falling waves, getting growth waves. Thus, after passing the entire array, we will have only growth waves or equal waves, if their sorting keys are the same. Small waves are merged on the fly using insertion sort to reduce their total number.
+2. We reverse falling waves, getting growth waves. Thus, after passing the entire array, we will have only growth waves or equal waves, if their sorting keys are the same..
 3. Keeping the indices of the ends of the waves, we will have a set of sorted subarrays ready for the final merge.
 4. Well, in the end, the sorted subarrays merge and the given array is sorted.
 
@@ -33,7 +33,7 @@ Worst Case: O(n log n)
 
 # Auxiliary space
 
-O(4n / 3 + 2) – The algorithm uses auxiliary arrays to merge and save wave indices.
+O(n + k) – The algorithm uses auxiliary arrays to merge waves (n) and save wave indices (k).
 
 # Advantages
 • Quick sorting of already sorted (whether in ascending or descending order) arrays or if the array has sufficiently significant such ranges
